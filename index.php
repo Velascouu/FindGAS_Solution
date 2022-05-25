@@ -18,7 +18,7 @@
                     
                 </div>
                 <div class="col-12 col-lg-7" id="preciosArea">
-                    <div class="card" style="width: 100%; height: auto; background-color: rgb(239, 255, 240); border-radius: 10px; margin-top: 20px;">
+                    <div class="card" style="width: 100%; height: auto; background-color: rgb(239, 255, 240); border-radius: 10px; margin-top: 20px; margin-bottom: 20px;">
                         <img src="./assets/img/estacion.jpg" class="card-img-top" alt="..." style="border-radius: 10px;">
                         <div class="card-body">
                             <h5 class="card-title"><b>Descubre los precios medios:</b></h5>
@@ -61,7 +61,7 @@
                               </ul>
                               <div id="inputPrecioMedio" style="width: 500px; text-align: center; padding: 20px;"></div>
 
-                            <a href="#" class="btn btn-primary" onclick="preciosMedios()">Calcular</a>
+                            <!-- <a href="#" class="btn btn-primary" onclick="preciosMedios()">Calcular</a> -->
                         </div>
                         
                 </div>
