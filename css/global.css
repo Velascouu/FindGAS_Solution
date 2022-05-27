@@ -91,14 +91,8 @@ main{
 
 
 /* FORMULARIO*/
-#registro{
-    max-width: 800px;
-    width: 90%;
-    margin: auto;
-    padding: 40px;
-}
 
-.formulario {
+/* .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 20px;
@@ -163,6 +157,7 @@ main{
 
 .formulario-mensaje {
 	height: 45px;
+	width: 60%;
 	line-height: 45px;
 	background: #F66060;
 	padding: 0 15px;
@@ -208,8 +203,8 @@ main{
 }
 
 .formulario-mensaje-exito-activo {
-	display: block;
-}
+	display: block; 
+}*/
 
 /* ----- -----  Estilos para Validacion ----- ----- */
 .formulario-group-correcto .formulario-validacion-estado {

@@ -25,10 +25,8 @@ let   $ideess = "",
         $Precio_Gasolina95E5Premium = "",
         $Precio_Gasolina98E10 = "",
         $Precio_Gasolina98E5 = "",
-        $Precio_Hidrogeno = "",
-        $user = "",
-        $usuario = document.getElementById('user').value,
-        $password = document.getElementById('password').value;
+        $Precio_Hidrogeno = "";
+        // $user = "";
 
 
 
@@ -107,7 +105,7 @@ function guardarFavorito(idMunicipio, id) {
                 $Precio_Gasolina98E10 = parseFloat(e["Precio Gasolina 98 E10"].replace(",", "."));
                 $Precio_Gasolina98E5 = parseFloat(e["Precio Gasolina 98 E5"].replace(",", "."));
                 $Precio_Hidrogeno = parseFloat(e["Precio Hidrogeno"].replace(",", "."));
-                $user = "user1";
+                // $user = $usuario;
 
                 guardarFav();
                 return;
@@ -148,8 +146,8 @@ async function guardarFav(){
         Precio_Gasolina95E5Premium = $Precio_Gasolina95E5Premium,
         Precio_Gasolina98E10 = $Precio_Gasolina98E10,
         Precio_Gasolina98E5 = $Precio_Gasolina98E5,
-        Precio_Hidrogeno = $Precio_Hidrogeno,
-        user = $user;
+        Precio_Hidrogeno = $Precio_Hidrogeno;
+        // user = $user;
     
     // Lo que vamos a enviar a PHP
     const cargaUtil = {
@@ -180,7 +178,7 @@ async function guardarFav(){
         Precio_Gasolina98E10,
         Precio_Gasolina98E5,
         Precio_Hidrogeno,
-        user,
+        // user,
 
     };
     const cargaUtilCodificada = JSON.stringify(cargaUtil);
@@ -199,7 +197,7 @@ async function guardarFav(){
         }
     } catch (e) {
         // En caso de que haya un error
-        alert("Error de servidor. Inténtalo de nuevo. El error es: " + e);
+        console.log("Error de servidor. Inténtalo de nuevo. El error es: " + e);
     }
     obtenerEESS();
 };

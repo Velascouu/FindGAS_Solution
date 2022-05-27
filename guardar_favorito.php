@@ -1,5 +1,7 @@
 
 <?php
+session_start();
+
 $cargaUtil = json_decode(file_get_contents("php://input"));
 // Si no hay datos, salir inmediatamente indicando un error 500
 if (!$cargaUtil) {
@@ -33,7 +35,7 @@ $Precio_Gasolina95E5Premium = $cargaUtil->Precio_Gasolina95E5Premium;
 $Precio_Gasolina98E10 = $cargaUtil->Precio_Gasolina98E10;
 $Precio_Gasolina98E5 = $cargaUtil->Precio_Gasolina98E5;
 $Precio_Hidrogeno = $cargaUtil->Precio_Hidrogeno;
-$user = $cargaUtil->user;
+$user = $_SESSION["usuario"];
 
 
 include_once "funciones.php";

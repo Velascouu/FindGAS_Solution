@@ -5,37 +5,52 @@ var arrayEESS = new Array();
 var markers = new Array();
 var precioMedio;
 
+console.log("Antes de buscarCCAA");
 buscarCCAA();
-
+console.log("Dspues de buscarCCAA");
 
 
 //#region Recoger el metodo de buscar en BD usuario y contraseña
-///////////////////////////// Buscar el listado de CCAA ////////////////////////////////
+///////////////////////////// Buscar usuario y contraseña ////////////////////////////////
 
-function obtenerUser() {
-    fetch('./obtener_user.php')
-    .then(resp => {
-        console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);    
-        console.log(resp);          
-        return resp.json();
-    })
-    .then(json => {
-        console.log(json);
-        var user = json;
+async function obtenerUser(){
 
-        user.forEach(e => {
-            console.log(e);
-            
+    console.log(document.getElementById('user').text);
+    console.log(document.getElementById('user').value);
+
+    var user = document.getElementById('user').value;
+    
+    // Lo que vamos a enviar a PHP
+    const envioPack = {
+        user: user,
+    };
+    const cargaUtilCodificada = JSON.stringify(envioPack);
+    try {
+        const respuestaRaw = await fetch("obtener_user.php", {
+            method: "POST",
+            body: cargaUtilCodificada,
         });
-    })
-    .catch(err => { console.log("ERROR :" + err) });
-}
+        console.log("Respuesta Cruda: "+respuestaRaw);
+        const respuesta = await respuestaRaw.json();
+        console.log("Respuesta : "+respuesta);
+        if (respuesta) {
+            alert("Sesion iniciada");
+        } else {
+            alert("Usuario o cotraseña incorrecto");
+        }
+    } catch (e) {
+        // En caso de que haya un error
+        alert("Error de servidor. Inténtalo de nuevo. El error es: " + e);
+    }
+    obtenerEESS();
+};
 //#endregion
 
 //#region Buscar el listado de CCAA
 ///////////////////////////// Buscar el listado de CCAA ////////////////////////////////
 
 function buscarCCAA() {
+    console.log("Dentro de buscarCCAA");
     fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ComunidadesAutonomas/')
     .then(resp => {
         console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
@@ -52,7 +67,7 @@ function buscarCCAA() {
             // console.log(e);
             id = ListaCCAA[i]["IDCCAA"];
             nombre = ListaCCAA[i]["CCAA"];
-            // console.log("Id: "+id+"    Nombre: "+nombre);
+            console.log("Id: "+id+"    Nombre: "+nombre);
 
             var option = document.createElement("option");
             option.value = id;

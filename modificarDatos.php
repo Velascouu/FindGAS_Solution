@@ -1,6 +1,3 @@
-
-
-
 <?php include_once "encabezado.php" ?>
 
 
@@ -9,15 +6,16 @@
         <div class="container">
 
         <div class="row justify-content-md-center">
-            <div class="col-10 col-lg-6">
+            <div class="col-10 col-lg-10">
             
-                <form action="insertar_usuario.php" method="GET" class="formulario" id="formulario">
+                <form action="modificar_usuario.php" method="GET" class="formulario" id="formulario">
 
                     <!-- Grupo usuario-->
                     <div class="formulario-group" id="grupo-usuario">
-                        <label for="usuario" class="formulario-label">Usuario</label>
+                        <label for="usuario" class="formulario-label">Usuario:</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="usuar" id="usuar" placeholder="usuario">
+
+                            <?php echo "<p><b> ".$_SESSION['usuario']." </b></p>"; ?>
                         </div>
                         <p class="formulario-input-error">El usuario tiene que tener entre 4 y 16 dígitos.</p>
                     </div>
@@ -26,7 +24,7 @@
                     <div class="formulario-group" id="grupo-nombre">
                         <label for="nombre" class="formulario-label">Nombre</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="nombre" id="nombre" placeholder="nombre">
+                            <input type="text" class="formulario-input" name="modifi_nombre" id="nombre" placeholder="nombre">
                         </div>
                         <p class="formulario-input-error">El nombre tiene que tener entre 0 y 16 dígitos.</p>
                     </div>
@@ -35,7 +33,7 @@
                     <div class="formulario-group" id="grupo-apellidos">
                         <label for="apellidos" class="formulario-label">Apellidos</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="apellidos" id="apellidos" placeholder="apellidos">
+                            <input type="text" class="formulario-input" name="modifi_apellidos" id="apellidos" placeholder="apellidos">
                         </div>
                         <p class="formulario-input-error">Los apellidos tiene que tener entre 0 y 32 dígitos.</p>
                     </div>
@@ -44,7 +42,7 @@
                     <div class="formulario-group" id="grupo-email">
                         <label for="email" class="formulario-label">Email</label>
                         <div class="formulario-group-input">
-                            <input type="email" class="formulario-input" name="email" id="email" placeholder="correo@correo.com">
+                            <input type="email" class="formulario-input" name="modifi_email" id="email" placeholder="correo@correo.com">
                         </div>
                         <p class="formulario-input-error">Error.</p>
                     </div>
@@ -53,7 +51,7 @@
                     <div class="formulario-group" id="grupo-password">
                         <label for="password" class="formulario-label">Contraseña</label>
                         <div class="formulario-group-input">
-                            <input type="password" class="formulario-input" name="pass" id="pass">
+                            <input type="password" class="formulario-input" name="modifi_pass" id="pass">
                         </div>
                         <p class="formulario-input-error">El password tiene que tener entre 4 y 12 dígitos.</p>
                     </div>
@@ -62,7 +60,7 @@
                     <div class="formulario-group" id="grupo-password2">
                         <label for="password2" class="formulario-label">Repita la contraseña</label>
                         <div class="formulario-group-input">
-                            <input type="password" class="formulario-input" name="pass2" id="pass2">
+                            <input type="password" class="formulario-input" name="modifi_pass2" id="pass2">
                         </div>
                         <p class="formulario-input-error">Las contraseñas han de ser iguales.</p>
                     </div>
@@ -71,7 +69,7 @@
                     <div class="formulario-group" id="grupo-localidad">
                         <label for="localidad" class="formulario-label">Localidad</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="localidad" id="localidad" placeholder="localidad">
+                            <input type="text" class="formulario-input" name="modifi_localidad" id="localidad" placeholder="localidad">
                         </div>
                         <p class="formulario-input-error">El localidad tiene que tener entre 0 y 16 dígitos.</p>
                     </div>
@@ -80,7 +78,7 @@
                     <div class="formulario-group" id="grupo-cp">
                         <label for="cp" class="formulario-label">Codigo postal</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="codigo_postal" id="codigo_postal" placeholder="codigo postal">
+                            <input type="text" class="formulario-input" name="modifi_codigo_postal" id="codigo_postal" placeholder="codigo postal">
                         </div>
                         <p class="formulario-input-error">El codigo postal tiene que tener 5 dígitos.</p>
                     </div>
@@ -89,7 +87,7 @@
                     <div class="formulario-group" id="grupo-localidad">
                         <label for="localidad" class="formulario-label">Localidad</label>
                         <div class="formulario-group-input">
-                            <select class="form-select" id="selectCombustible" name="tipo_combustible" aria-label="Default select example">
+                            <select class="form-select" id="selectCombustible" name="modifi_tipo_combustible" aria-label="Default select example">
                                 <option selected disabled>Selecciona un tipo de COMBUSTIBLE</option>
                                 <option value="gasolina95">Gasolina 95</option>
                                 <option value="gasolina95premium">Gasolina 95 Premium</option>
@@ -110,17 +108,9 @@
                     <div class="formulario-group" id="grupo-deposito">
                         <label for="deposito" class="formulario-label">Tamaño de tu deposito</label>
                         <div class="formulario-group-input">
-                            <input type="text" class="formulario-input" name="deposito" id="deposito" placeholder="Tamaño deposito en l">
+                            <input type="text" class="formulario-input" name="modifi_deposito" id="deposito" placeholder="Tamaño deposito en l">
                         </div>
                         <p class="formulario-input-error">El deposito tiene que tener entre 0 y 16 dígitos.</p>
-                    </div>
-
-                    <!-- Grupo terminos-->
-                    <div class="formulario-group" id="grupo-terminos">
-                        <label class="formulario-label">
-                            <input class="formulario-checkbox" type="checkbox" name="terminos" id="terminos">
-                            Acepto los terminos y condiciones.
-                        </label>
                     </div>
 
                     <div class="formulario-mensaje" id="formulario-mensaje">
@@ -142,7 +132,9 @@
             </div>
         </div>
 
-
+        <script>
+             window.onload = obtenerDatosUser();
+        </script>
 
 
 

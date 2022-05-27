@@ -1,5 +1,10 @@
 <?php
+session_start();
+if(isset($_SESSION["usuario"])){
+// echo '<script>console.log('.$_SESSION["usuario"].');</script>';
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,14 +46,10 @@
                 </div>
                 <div id="navegadorInicio"  style="margin-right: 5vw;">
                     <ul class="nav nav-pills justify-content-end">
-                        <li class="nav-item" style="margin: 5px;">
-                            <a class="btn btn-primary" href="./registro.php" role="button">Registrarse</a>
-                        </li>
-                        <li class="nav-item" style="margin: 5px;">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">Iniciar sesión</button>
-                        </li>
-                        </ul>
+
+                    <?php include_once "sesion_user.php" ?>
+
+                    </ul>
                 </div>
             </div>
         </nav>

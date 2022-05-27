@@ -68,6 +68,7 @@
               </div>
         </div>
 
+        <script type="text/javascript" src="./js/funciones.js"></script>
 
 
 <?php include_once "pie.php" ?>

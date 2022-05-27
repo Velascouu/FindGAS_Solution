@@ -2,8 +2,8 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	usuario: /^[a-zA-Z0-9\_\-]{4,32}$/, // Letras, numeros, guion y guion_bajo
+	nombre: /^[a-zA-ZÀ-ÿ\s]{1,32}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
@@ -53,8 +53,8 @@ const validarCampo = (expresion, input, campo) => {
 }
 
 const validarPassword2 = () => {
-	const inputPassword1 = document.getElementById('password');
-	const inputPassword2 = document.getElementById('password2');
+	const inputPassword1 = document.getElementById('pass');
+	const inputPassword2 = document.getElementById('pass2');
 
 	if(inputPassword1.value !== inputPassword2.value){
 		document.getElementById(`grupo-password2`).classList.add('formulario-grupo-incorrecto');

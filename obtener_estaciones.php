@@ -1,5 +1,11 @@
 
 <?php
+
 include_once "funciones.php";
-$estaciones = obtenerEESS();
+
+$usuario = $_SESSION['usuario'];
+
+$estaciones = obtenerEESSporUser($usuario);
+
+// $estaciones = obtenerEESS();
 echo json_encode($estaciones);

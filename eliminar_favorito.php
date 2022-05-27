@@ -7,5 +7,9 @@ if (!isset($_GET["id"])) {
 }
 
 include_once "funciones.php";
-$respuesta = eliminarEESS($_GET["id"]);
+
+$usuario = $_SESSION['usuario'];
+
+
+$respuesta = eliminarEESS($_GET["id"], $usuario);
 echo json_encode($respuesta);
