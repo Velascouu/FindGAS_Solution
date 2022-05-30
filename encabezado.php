@@ -40,7 +40,7 @@ if(isset($_SESSION["usuario"])){
                             <a class="nav-link active" href="./buscador.html"><h2>Buscador</h2></a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="./favoritos.php"><h2><b2>Favoritos</b2></h2></a>
+                            <a class="nav-link active" href="./favoritos.php"><h2>Favoritos</h2></a>
                         </li>
                     </ul>
                 </div>

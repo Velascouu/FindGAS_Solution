@@ -11,15 +11,15 @@
                 <br>
                 
                 <!-- Formulario Inicio de Sesion -->
-                <form name="inicioSesion" action="obtener_user.php" method="GET">
+                <form name="inicioSesion" action="obtener_user.php" method="post">
                     <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Correo electrónico:</label>
+                    <label for="inputEmail" class="form-label">Usuario</label>
                     <input type="text" class="form-control" id="user" name="user" aria-describedby="emailHelp" placeholder="Usuario">
                     <div id="emailHelp" class="form-text">Debe estar registrado, si no lo esta, registrese <a href="./registro.php">aquí</a>.</div>
                     </div>
                     <div class="mb-3">
                     <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="pass" placeholder="Contraseña">
+                    <input type="password" class="form-control" id="pass_word" name="pass_word" placeholder="Contraseña">
                     </div>
                     <button type="submit" class="btn btn-primary" style="float: right;" >Iniciar sesión</button>
                     <input type="text" id="pasador" hidden>
@@ -42,6 +42,6 @@
 
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry"></script>
-<script src="./js/funciones.js"></script>
+<!-- <script src="./js/funciones.js"></script> -->
 <script src="./js/map.js"></script>
 </html>

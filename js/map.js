@@ -1,17 +1,13 @@
 
-
 var getPosition = false;
 var currentLat = null;
 var currentLong = null;
-
-
 
 inicioMap();
 funcionInit();
 
 //#region Carga el mapa de GOOGLE MAPS
 ///////////////////////////// CARGA DEL MAPA DE GOOGLE MAPS ////////////////////////////////
-
 function inicioMap(){
     // console.log("Latitud: "+lat+"   Longitud: "+long);
 
@@ -31,7 +27,7 @@ function inicioMap(){
     map = new google.maps.Map(
         mapEle, {
         center: new google.maps.LatLng(lat, lng),//latitud,longitud),//
-        zoom: 8, // zoom del mapa
+        zoom: 6, // zoom del mapa
         draggableCursor: 'auto', // forma del cursor
         draggingCursor: 'crosshair',
         mapTypeId: google.maps.MapTypeId.ROADMAP // tipo de mapa
@@ -39,9 +35,6 @@ function inicioMap(){
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
 //#endregion
-
-
-
 
 //#region Pedir Ubicacion del dispositivo
 ///////////////////////////// PEDIMOS UBICACION DEL DISPOSITIVO ////////////////////////////////
@@ -56,9 +49,9 @@ function funcionInit() {
             const coordenadas = ubicacion.coords;
             this.currentLat = coordenadas.latitude;
             this.currentLong = coordenadas.longitude;
-            console.log("Latitud: "+currentLat+"  Longitud: "+currentLong );
+            // console.log("Latitud: "+currentLat+"  Longitud: "+currentLong );
             this.getPosition = true;
-            console.log(getPosition);
+            // console.log(getPosition);
             centrarMapa(map, currentLat, currentLong);
             zoomMapa(12);
             ponerMarcador(currentLat, currentLong, "Ubicacion actual");
@@ -83,7 +76,7 @@ function funcionInit() {
 //#region Cambiar el centro del MAPA
 ///////////////////////////// CENTRAR EL MAPA ////////////////////////////////
 function centrarMapa(map, latitud, longitud){
-    map.setCenter(new google.maps.LatLng(latitud, longitud),23);
+    map.setCenter(new google.maps.LatLng(latitud, longitud));
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -98,14 +91,157 @@ function zoomMapa(num){
 //////////////////////////////////////////////////////////////////////////////
 //#endregion
 
+//#region Centrar en un municipio solicitado
+function centrarenMunicipio(ccaa, provincia, municipio) {
+    
+}
+//#endregion
 
+//#region Centrar en una CCAA solicitada
+function centrarCCAA(ccaa) {
+    switch (ccaa) {
+        case '01':
+            //Andalucía
+            var lat = 37.4572112;
+            var long = -4.6920801;
+            centrarMapa(map, lat, long);
+            zoomMapa(7);
+            break;
+        case '02':
+            //Aragon
+            var lat = 41.4326023;
+            var long = -0.7171092;
+            centrarMapa(map, lat, long);
+            zoomMapa(7.5);
+            break;
+        case '03':
+            //Asturias
+            var lat = 43.3203297;
+            var long = -5.8571245;
+            centrarMapa(map, lat, long);
+            zoomMapa(9);
+            break;
+        case '04':
+            //Baleares
+            var lat = 39.4070001;
+            var long = 2.6717389;
+            centrarMapa(map, lat, long);
+            zoomMapa(8);
+            break;
+        case '05':
+            //Canarias
+            var lat = 28.3664206;
+            var long = -15.8045477;
+            centrarMapa(map, lat, long);
+            zoomMapa(8);
+            break;
+        case '06':
+            //Cantabria
+            var lat = 43.2753724;
+            var long = -3.9808392;
+            centrarMapa(map, lat, long);
+            zoomMapa(9);
+            break;
+        case '07':
+            //Castilla La Mancha
+            var lat = 39.7841592;
+            var long = -3.9093488;
+            centrarMapa(map, lat, long);
+            zoomMapa(7.5);
+            break;
+        case '08':
+            //Castilla y León
+            var lat = 41.6591945;
+            var long = -4.9912108;
+            centrarMapa(map, lat, long);
+            zoomMapa(7.5);
+            break;
+        case '09':
+            //Cataluña
+            var lat = 41.4613773;
+            var long = 1.7242689;
+            centrarMapa(map, lat, long);
+            zoomMapa(8);
+            break;
+        case '10':
+            //Comunidad Valenciana
+            var lat = 39.3886872;
+            var long = -0.0726353;
+            centrarMapa(map, lat, long);
+            zoomMapa(7.5);
+            break;
+        case '11':
+            //Extremadura
+            var lat = 39.2775256;
+            var long = -6.3068622;
+            centrarMapa(map, lat, long);
+            zoomMapa(7.5);
+            break;
+        case '12':
+            //Galicia
+            var lat = 42.8535082;
+            var long = -8.1427124;
+            centrarMapa(map, lat, long);
+            zoomMapa(8);
+            break;
+        case '13':
+            //Madrid
+            var lat = 40.5227728;
+            var long = -3.8058464;
+            centrarMapa(map, lat, long);
+            zoomMapa(8.5);
+            break;
+        case '14':
+            //Murcia
+            var lat = 38.0845034;
+            var long = -1.3207856;
+            centrarMapa(map, lat, long);
+            zoomMapa(8.5);
+            break;
+        case '15':
+            //Navarra
+            var lat = 42.6052046;
+            var long = -1.8102457;
+            centrarMapa(map, lat, long);
+            zoomMapa(8.5);
+            break;
+        case '16':
+            //Pais Vasco
+            var lat = 42.9684193;
+            var long = -2.6225973;
+            centrarMapa(map, lat, long);
+            zoomMapa(9);
+            break;
+        case '17':
+            //La Rioja
+            var lat = 42.2946803;
+            var long = -2.493671;
+            centrarMapa(map, lat, long);
+            zoomMapa(9.5);
+            break;
+        case '18':
+            //Ceuta
+            var lat = 35.893845;
+            var long = -5.3362573;
+            centrarMapa(map, lat, long);
+            zoomMapa(12);
+            break;
+        case '19':
+            //Melilla
+            var lat = 35.2938006;
+            var long = -2.9452856;
+            centrarMapa(map, lat, long);
+            zoomMapa(12);
+            break;
+    
+        default:
+            console.log("No ha recibido la CCAA");
+            break;
+    }
+}
+//#endregion
 
-
-
-
-
-
-
+//#region ponerMarcador
 function ponerMarcador(lat, long, txt) {
     var marker = new google.maps.Marker({
         position: {lat: lat, lng: long},
@@ -114,14 +250,15 @@ function ponerMarcador(lat, long, txt) {
         title: txt
     });
 }
+//#endregion
 
-
+//#region ponerMarcadores
 function ponerMarcadores() {
     this.markers = new google.maps.Marker();
 }
+//#endregion
 
-
-
+//#region Fuciones a desarrollar.............................
 function hacerRuta(){
     var origen = document.getElementById("cOrigen").value
     var destino = document.getElementById("cDestino").value
@@ -144,10 +281,6 @@ function hacerRuta(){
         });
 
 }
-
-
-
-
 
 function centrarMunicipio(){
     var  geocoder = new google.maps.Geocoder();
@@ -174,3 +307,4 @@ function centrarMunicipio(){
         }  
     });
 }
+//#endregion

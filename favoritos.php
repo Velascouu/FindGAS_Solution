@@ -80,7 +80,7 @@
                         <th>DIRECCION</th>
                         <th>HORARIO</th>
                         <th>LOCALIDAD</th>
-                        <th>PRECIOS</th>
+                        <!-- <th>PRECIOS</th> -->
                         <th>BORRAR</th>
                       </tr>
                     </thead>

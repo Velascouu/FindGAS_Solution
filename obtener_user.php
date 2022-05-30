@@ -5,13 +5,24 @@ include_once "funciones.php";
 
 obtenerConexion();
 
-$usuario = $_GET['user'];
-$passwrd = $_GET['pass'];
-$password = password_hash($passwrd, PASSWORD_DEFAULT);
+$usuario = $_POST['user'];
+$pass=$_POST['pass_word'];
+// $password = password_hash($passwrd, PASSWORD_DEFAULT);
 
 // obtenerUser($_GET['user'], $_GET['pass']);
 
-$var = obtenerUser($usuario);
+$var = obtenerUser($usuario, $pass);
+
+// echo '<script>console.log('.$var.')</script>';
+
+// $respuesta=json_encode($var[0]['passwrd']);
+$respuesta=json_encode($var);
+
+// $otra = "'$pass'";
+
+// echo '<script>console.log('.$otra.');</script>';
+// echo '<script>console.log('.$respuesta.');</script>';
+// echo '<script>console.log('.strval($pass).');</script>';
 
 // // echo '<script>console.log('.$var.')</script>';
 // echo '<script>console.log('.json_encode($var).')</script>';
@@ -34,14 +45,11 @@ $var = obtenerUser($usuario);
 
 
 if($var == false){
-    // echo '<script>alert("Usuario o contraseña incorrectos.")</script>';
+    echo '<script>alert("Usuario o contraseña incorrectos.")</script>';
     echo '<script>window.location.href = "./favoritos.php";</script>';
 }else{
-    $respuesta = json_encode($var);
-    // if(password_verify($password, $respuesta)){
-        $_SESSION['usuario'] = $usuario;
-        echo '<script>window.location.href = "./favoritos.php";</script>';
-    // }
+    $_SESSION['usuario'] = $usuario;
+    echo '<script>window.location.href = "./favoritos.php";</script>';
 }
 
 // $respuesta = json_encode($var);

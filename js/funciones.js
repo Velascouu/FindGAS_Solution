@@ -1,22 +1,17 @@
 // const municipiosJson = import('../assets/json/localidades.json');
 
-
 var arrayEESS = new Array();
 var markers = new Array();
 var precioMedio;
 
-console.log("Antes de buscarCCAA");
 buscarCCAA();
-console.log("Dspues de buscarCCAA");
+buscarCombustibles();
 
 
 //#region Recoger el metodo de buscar en BD usuario y contraseña
 ///////////////////////////// Buscar usuario y contraseña ////////////////////////////////
 
 async function obtenerUser(){
-
-    console.log(document.getElementById('user').text);
-    console.log(document.getElementById('user').value);
 
     var user = document.getElementById('user').value;
     
@@ -46,14 +41,47 @@ async function obtenerUser(){
 };
 //#endregion
 
+//#region Buscar el listado de COMBUSTIBLES
+///////////////////////////// Buscar el listado de COMBUSTIBLES ////////////////////////////////
+
+function buscarCombustibles() {
+    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ProductosPetroliferos/')
+    .then(resp => {
+        // console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
+        return resp.json();
+    })
+    .then(json => {
+        // console.log(json);
+        i=0;
+        var ListaCombus = json;
+        select = document.getElementById('selectCombusti');
+        // limpiarSelect(select);
+
+        ListaCombus.forEach(e => {
+            // console.log(e);
+            id = ListaCombus[i]["IDProducto"];
+            nombre = ListaCombus[i]["NombreProducto"];
+            // console.log("Id: "+id+"    Nombre: "+nombre);
+            if(id < 9 || id >14){
+                var option = document.createElement("option");
+                option.value = id;
+                option.text = nombre;
+                this.select.options.add(option);
+            }
+            i++;
+        });
+    })
+    .catch(err => { console.log("ERROR :" + err) });
+}
+//#endregion
+
 //#region Buscar el listado de CCAA
 ///////////////////////////// Buscar el listado de CCAA ////////////////////////////////
 
 function buscarCCAA() {
-    console.log("Dentro de buscarCCAA");
     fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ComunidadesAutonomas/')
     .then(resp => {
-        console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
+        // console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
@@ -61,13 +89,13 @@ function buscarCCAA() {
         i=0;
         var ListaCCAA = json;
         select = document.getElementById('selectCCAA');
-        // limpiarSelect(select);
+        limpiarSelect(select);
 
         ListaCCAA.forEach(e => {
             // console.log(e);
             id = ListaCCAA[i]["IDCCAA"];
             nombre = ListaCCAA[i]["CCAA"];
-            console.log("Id: "+id+"    Nombre: "+nombre);
+            // console.log("Id: "+id+"    Nombre: "+nombre);
 
             var option = document.createElement("option");
             option.value = id;
@@ -83,14 +111,14 @@ function buscarCCAA() {
 //#region Buscar el listado de CCAA por Tipo de Combustible
 ///////////////////////////// Buscar el listado de CCAA por Tipo de Combustible ////////////////////////////////
 
-function buscarEESSxCCAAyPrecio(idCCAA) {
-    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroCCAAProducto/'+idCCAA+'/'+1)
+function buscarEESSxCCAAyPrecio(idCCAA, combus) {
+    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroCCAAProducto/'+idCCAA+'/'+combus)
     .then(resp => {
-        console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
+        // console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
-        console.log(json);
+        // console.log(json);
         i=0;
         var sumaPrecios = 0;
         var mediaPrecios = 0;
@@ -105,10 +133,15 @@ function buscarEESSxCCAAyPrecio(idCCAA) {
             // console.log(sumaPrecios);
             i++;
         });
-        mediaPrecios = sumaPrecios/(i+1);
-        console.log(mediaPrecios);
+        mediaPrecios = sumaPrecios/(i);
+        // console.log(mediaPrecios);
+        var precioMedio = round(mediaPrecios);
 
-        document.getElementById('inputPrecioMedio').innerHTML='<h3> '+mediaPrecios+' €/l</h3>';
+        if(isNaN(precioMedio)){
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> No hay datos disponibles </h3>';
+        }else{
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> '+precioMedio+' €/l</h3>';    
+        }
 
     })
     .catch(err => { console.log("ERROR :" + err) });
@@ -118,14 +151,14 @@ function buscarEESSxCCAAyPrecio(idCCAA) {
 //#region Buscar el listado de Provincias por Tipo de Combustible
 ///////////////////////////// Buscar el listado de Provincias por Tipo de Combustible ////////////////////////////////
 
-function buscarEESSxProvinciayPrecio(provincia) {
-    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroProvinciaProducto/'+provincia+'/'+1)
+function buscarEESSxProvinciayPrecio(provincia, combus) {
+    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroProvinciaProducto/'+provincia+'/'+combus)
     .then(resp => {
         console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
-        console.log(json);
+        // console.log(json);
         i=0;
         var sumaPrecios = 0;
         var mediaPrecios = 0;
@@ -140,10 +173,15 @@ function buscarEESSxProvinciayPrecio(provincia) {
             // console.log(sumaPrecios);
             i++;
         });
-        mediaPrecios = sumaPrecios/(i+1);
-        console.log(mediaPrecios);
+        mediaPrecios = sumaPrecios/(i);
+        // console.log(mediaPrecios);
+        var precioMedio = round(mediaPrecios);
 
-        document.getElementById('inputPrecioMedio').innerHTML='<h3> '+mediaPrecios+' €/l</h3>';
+        if(isNaN(precioMedio)){
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> No hay datos disponibles </h3>';
+        }else{
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> '+precioMedio+' €/l</h3>';    
+        }
 
     })
     .catch(err => { console.log("ERROR :" + err) });
@@ -153,14 +191,14 @@ function buscarEESSxProvinciayPrecio(provincia) {
 //#region Buscar el listado de Municipios por Tipo de Combustible
 ///////////////////////////// Buscar el listado de Municipios por Tipo de Combustible ////////////////////////////////
 
-function buscarEESSxMunicipioyPrecio(municipio) {
-    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipioProducto/'+municipio+'/'+1)
+function buscarEESSxMunicipioyPrecio(municipio, combus) {
+    fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipioProducto/'+municipio+'/'+combus)
     .then(resp => {
         console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
-        console.log(json);
+        // console.log(json);
         i=0;
         var sumaPrecios = 0;
         var mediaPrecios = 0;
@@ -171,14 +209,20 @@ function buscarEESSxMunicipioyPrecio(municipio) {
             // console.log(e);
             // console.log(e["PrecioProducto"]);
             // e["PrecioProducto"]
+            // console.log(e["PrecioProducto"]);
             sumaPrecios = sumaPrecios + parseFloat(e["PrecioProducto"].replace(',', '.'));
             // console.log(sumaPrecios);
             i++;
         });
-        mediaPrecios = sumaPrecios/(i+1);
-        console.log(mediaPrecios);
+        mediaPrecios = sumaPrecios/(i);
+        // console.log(mediaPrecios);
+        var precioMedio = round(mediaPrecios);
 
-        document.getElementById('inputPrecioMedio').innerHTML='<h3> '+mediaPrecios+' €/l</h3>';
+        if(isNaN(precioMedio)){
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> No hay datos disponibles </h3>';
+        }else{
+            document.getElementById('inputPrecioMedio').innerHTML='<h3> '+precioMedio+' €/l</h3>';    
+        }
 
     })
     .catch(err => { console.log("ERROR :" + err) });
@@ -191,7 +235,7 @@ function buscarEESSxMunicipioyPrecio(municipio) {
 function buscarProvincias(idCCAA) {
     fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ProvinciasPorComunidad/'+idCCAA)
     .then(resp => {
-        console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
+        // console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
@@ -229,7 +273,7 @@ function buscarMunicipios(idProvincia) {
         return resp.json();
     })
     .then(json => {
-        console.log(json);
+        // console.log(json);
         i=0;
         var ListaMunicipios = json;
         select = document.getElementById('selectMunicipio');
@@ -265,9 +309,7 @@ function buscarEESSporMun(idMunicipio) {
         console.log(json);
         i=0;
         var ListaEESS = json["ListaEESSPrecio"];
-
         limpiarRegistros();
-        // limpiarMarcadores();
 
         if(ListaEESS.length > 0){
             guardarRegistros(ListaEESS);
@@ -341,25 +383,18 @@ function guardarRegistros(ListaEESS) {
 //#region Guardar MARCADORES
 function guardarMarcadores(ListaEESS) {
     i = 0;
-
     limpiarMarcadores();
-    
     ListaEESS.forEach(e => {
-        
-        console.log(e);
-
+        // console.log(e);
         var marker = new Array({
             position: {lat: parseFloat(e.latitud), lng: parseFloat(e.longitud)},
-            // icon: url("./assets/img/ubiBlue.png"),
+            icon: icono,
             map: map,
             title: e.empresa+", "+e.direccion
         });
         markers.push(marker);
-        
         i++;
     });
-
-    // console.log(this.markers);
 }
 //#endregion
 
@@ -394,11 +429,11 @@ function alerta(texto, id) {
 function buscarListaMunicipios() {
     fetch('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/Municipios/')
     .then(resp => {
-        console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
+        // console.log("Estado url : "+ resp.url+ "  status: "+resp.status+" type: "+resp.type);              
         return resp.json();
     })
     .then(json => {
-        console.log(json);
+        // console.log(json);
         var ListaMunicipios = json;
         
         ListaMunicipios.forEach(e => {
@@ -406,7 +441,7 @@ function buscarListaMunicipios() {
             id = ListaMunicipios[i]["IDMunicipio"];
             nombre = ListaMunicipios[i]["Municipio"];
             if(idMunicipio == id){
-                console.log("Id: "+id+"    Nombre: "+nombre);
+                // console.log("Id: "+id+"    Nombre: "+nombre);
             //     console.log(e);
             }
             i++;
@@ -446,14 +481,7 @@ function verModal(){
 
 //#region Funcion LIMPIAR REGISTROS
 function limpiarRegistros() {
-    // console.log("*********************************************************************");
-    // console.log(this.arrayEESS.length);
-    // console.log(this.arrayEESS);
     this.arrayEESS.splice(0, arrayEESS.length);
-    // console.log(this.arrayEESS.length);
-    // console.log(this.arrayEESS);
-    // console.log("*********************************************************************");
-
     limpiarCabecera();
     limpiarTabla();
 
@@ -828,9 +856,9 @@ function preciosMedios() {
 }
 //#endregion
 
-
-
-
-
-
-
+//#region Redondea numeros a 2 decimales
+function round(num) {
+    var m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(num);
+}
+//#endregion

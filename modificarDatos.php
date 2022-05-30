@@ -10,81 +10,173 @@
             
                 <form action="modificar_usuario.php" method="GET" class="formulario" id="formulario">
 
-                    <!-- Grupo usuario-->
-                    <div class="formulario-group" id="grupo-usuario">
-                        <label for="usuario" class="formulario-label">Usuario:</label>
-                        <div class="formulario-group-input">
 
-                            <?php echo "<p><b> ".$_SESSION['usuario']." </b></p>"; ?>
+                <div class="row">
+                    <!-- Grupo usuario-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_usuar" id="usuar" placeholder="Usuario" disabled>
+                            <?php echo '<label for="usuar">Usuario: <b>'.$_SESSION["usuario"].'</b></label>';  ?>
                         </div>
-                        <p class="formulario-input-error">El usuario tiene que tener entre 4 y 16 dígitos.</p>
                     </div>
+                    <!-- Grupo email-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="modifi_email" id="email" placeholder="Email">
+                            <label for="email">Correo electronico</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Grupo nombre-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_nombre" id="nombre" placeholder="Nombre">
+                            <label for="nombre">Nombre</label>
+                        </div>
+                    </div>
+                    <!-- Grupo apellidos-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_apellidos" id="apellidos" placeholder="Apellidos">
+                            <label for="apellidos">Apellidos</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Grupo contraseña-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="modifi_pass" id="pass" placeholder="Contraseña">
+                            <label for="pass">Contraseña</label>
+                        </div>
+                    </div>
+                    <!-- Grupo coontraseña-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="modifi_pass2" id="pass2" placeholder="Repite la contraseña">
+                            <label for="pass2">Repite la contraseña</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Grupo localidad-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_localidad" id="localidad" placeholder="Localidad">
+                            <label for="localidad">Localidad</label>
+                        </div>
+                    </div>
+                    <!-- Grupo codigo postal-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_codigo_postal" id="codigo_postal" placeholder="Código postal">
+                            <label for="codigo_postal">Código postal</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Grupo Tipo de combustible-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                        <select class="form-select" id="selectCombustible" name="modifi_tipo_combustible" aria-label="Default select example" placeholder="Tipo de combustible">
+                                <option selected disabled>Selecciona un tipo de COMBUSTIBLE</option>
+                                <option value="gasolina95">Gasolina 95</option>
+                                <option value="gasolina95premium">Gasolina 95 Premium</option>
+                                <option value="gasolina98">Gasolina 98</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="diesel+">Diesel +</option>
+                                <option value="biodiesel">Biodiesel</option>
+                                <option value="bioetanol">Bioetanol</option>
+                                <option value="GNC">Gas Natural Comprimido</option>
+                                <option value="GNL">Gas Natural Licuado</option>
+                                <option value="hidrogeno">Hidrógeno</option>
+                            </select>
+                            <label for="selectCombustible">Tipo de combustible</label>
+                        </div>
+                    </div>
+                    <!-- Grupo deposito-->
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="modifi_deposito" id="deposito" placeholder="Tamaño deposito en l">
+                            <label for="deposito">Tamaño deposito en l</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                    
 
                     <!-- Grupo nombre-->
-                    <div class="formulario-group" id="grupo-nombre">
+                    <!-- <div class="formulario-group" id="grupo-nombre">
                         <label for="nombre" class="formulario-label">Nombre</label>
                         <div class="formulario-group-input">
                             <input type="text" class="formulario-input" name="modifi_nombre" id="nombre" placeholder="nombre">
                         </div>
                         <p class="formulario-input-error">El nombre tiene que tener entre 0 y 16 dígitos.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo apellidos-->
-                    <div class="formulario-group" id="grupo-apellidos">
+                    <!-- <div class="formulario-group" id="grupo-apellidos">
                         <label for="apellidos" class="formulario-label">Apellidos</label>
                         <div class="formulario-group-input">
                             <input type="text" class="formulario-input" name="modifi_apellidos" id="apellidos" placeholder="apellidos">
                         </div>
                         <p class="formulario-input-error">Los apellidos tiene que tener entre 0 y 32 dígitos.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo email-->
-                    <div class="formulario-group" id="grupo-email">
+                    <!-- <div class="formulario-group" id="grupo-email">
                         <label for="email" class="formulario-label">Email</label>
                         <div class="formulario-group-input">
                             <input type="email" class="formulario-input" name="modifi_email" id="email" placeholder="correo@correo.com">
                         </div>
                         <p class="formulario-input-error">Error.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo contraseña-->
-                    <div class="formulario-group" id="grupo-password">
+                    <!-- <div class="formulario-group" id="grupo-password">
                         <label for="password" class="formulario-label">Contraseña</label>
                         <div class="formulario-group-input">
                             <input type="password" class="formulario-input" name="modifi_pass" id="pass">
                         </div>
                         <p class="formulario-input-error">El password tiene que tener entre 4 y 12 dígitos.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo contraseña2-->
-                    <div class="formulario-group" id="grupo-password2">
+                    <!-- <div class="formulario-group" id="grupo-password2">
                         <label for="password2" class="formulario-label">Repita la contraseña</label>
                         <div class="formulario-group-input">
                             <input type="password" class="formulario-input" name="modifi_pass2" id="pass2">
                         </div>
                         <p class="formulario-input-error">Las contraseñas han de ser iguales.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo localidad-->
-                    <div class="formulario-group" id="grupo-localidad">
+                    <!-- <div class="formulario-group" id="grupo-localidad">
                         <label for="localidad" class="formulario-label">Localidad</label>
                         <div class="formulario-group-input">
                             <input type="text" class="formulario-input" name="modifi_localidad" id="localidad" placeholder="localidad">
                         </div>
                         <p class="formulario-input-error">El localidad tiene que tener entre 0 y 16 dígitos.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo cp-->
-                    <div class="formulario-group" id="grupo-cp">
+                    <!-- <div class="formulario-group" id="grupo-cp">
                         <label for="cp" class="formulario-label">Codigo postal</label>
                         <div class="formulario-group-input">
                             <input type="text" class="formulario-input" name="modifi_codigo_postal" id="codigo_postal" placeholder="codigo postal">
                         </div>
                         <p class="formulario-input-error">El codigo postal tiene que tener 5 dígitos.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo localidad-->
-                    <div class="formulario-group" id="grupo-localidad">
+                    <!-- <div class="formulario-group" id="grupo-localidad">
                         <label for="localidad" class="formulario-label">Localidad</label>
                         <div class="formulario-group-input">
                             <select class="form-select" id="selectCombustible" name="modifi_tipo_combustible" aria-label="Default select example">
@@ -102,10 +194,10 @@
                             </select>
                         </div>
                         <p class="formulario-input-error">Selecciona uno.</p>
-                    </div>
+                    </div> -->
 
                     <!-- Grupo deposito-->
-                    <div class="formulario-group" id="grupo-deposito">
+                    <!-- <div class="formulario-group" id="grupo-deposito">
                         <label for="deposito" class="formulario-label">Tamaño de tu deposito</label>
                         <div class="formulario-group-input">
                             <input type="text" class="formulario-input" name="modifi_deposito" id="deposito" placeholder="Tamaño deposito en l">
@@ -120,11 +212,10 @@
                             </svg>
                             <b>Error:</b> Por favor, rellena bien el formulario.
                         </p>
-                    </div>
+                    </div> -->
 
                     <div class="formulario-group formulario-group-btn-enviar">
-                        <button type="submit" class="formulario-btn" onclick="console.log('Enviado')">Enviar</button>
-                        <p class="formulario-mensaje-exito" id="formulario-mensaje-exito">Formulario enviado correctamente</p>
+                    <button type="submit" class="btn btn-primary" onclick="console.log('Enviado')" style="width: 200px; float: right;">Enviar</button>
                     </div>
 
                 </form>

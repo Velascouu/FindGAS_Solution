@@ -36,7 +36,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <h6 class="card-subtitle mb-2 text-muted">Comunidad autónoma:</h6>
-                                    <select class="form-select" id="selectCCAA" name="selectCCAA" aria-label="Default select example" onchange="buscarProvincias(document.getElementById('selectCCAA').value); buscarEESSxCCAAyPrecio(document.getElementById('selectCCAA').value);">
+                                    <select class="form-select" id="selectCCAA" name="selectCCAA" aria-label="Default select example" onchange="buscarProvincias(document.getElementById('selectCCAA').value); centrarCCAA(document.getElementById('selectCCAA').value); centrarCCAA(document.getElementById('selectCCAA').value);">
                                         <option selected disabled>Selecciona una CCAA</option>
                                     </select>
                                 </li>
@@ -48,7 +48,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <h6 class="card-subtitle mb-2 text-muted">Municipio:</h6>
-                                    <select class="form-select" id="selectMunicipio" name="selectMunicipio" aria-label="Default select example" onchange="inicioMap(); buscarEESSporMun(document.getElementById('selectMunicipio').value);">
+                                    <select class="form-select" id="selectMunicipio" name="selectMunicipio" aria-label="Default select example" onchange="buscarEESSporMun(document.getElementById('selectMunicipio').value);">
                                         <option selected disabled>Selecciona un MUNICIPIO</option>
                                     </select>
                                 </li>
